@@ -3,7 +3,7 @@
 # Underground Villages #
 
 ## About ##
-Ever wanted to be tunnel dweller? Wanted villages to also be underground? Well then this mod is for you!
+Ever wanted to be a tunnel dweller? Wanted villages to also be underground? Well then this mod is for you!
 This mod adds Underground Villages to your world.
 
 ## License ##
