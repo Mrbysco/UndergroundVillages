@@ -1,0 +1,27 @@
+modLoader="javafml"
+loaderVersion="[40,)"
+issueTrackerURL="https://github.com/Mrbysco/UndergroundVillages/issues"
+license="MIT"
+
+[[mods]]
+modId="underground_villages"
+version="${file.jarVersion}"
+displayName="Underground Villages Mod"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/underground-villages"
+authors="Mrbysco"
+description='''
+Ever wanted to be tunnel dweller? Wanted villages to also be underground? Well then this mod is for you!
+This mod adds Underground Villages to your world.
+'''
+[[dependencies.underground_villages]]
+modId="minecraft"
+mandatory=true
+versionRange="[1.18.2,1.19)"
+ordering="NONE"
+side="BOTH"
+[[dependencies.underground_villages]]
+modId="forge"
+mandatory=true
+versionRange="[40.0.41,)"
+ordering="NONE"
+side="BOTH"
