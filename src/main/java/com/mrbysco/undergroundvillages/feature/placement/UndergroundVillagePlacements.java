@@ -1,5 +1,6 @@
 package com.mrbysco.undergroundvillages.feature.placement;
 
+import com.google.common.collect.Lists;
 import com.mrbysco.undergroundvillages.UndergroundVillages;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
@@ -9,7 +10,6 @@ import net.minecraft.data.worldgen.features.VegetationFeatures;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
-import org.apache.commons.compress.utils.Lists;
 
 public class UndergroundVillagePlacements {
 	public static final DeferredRegister<PlacedFeature> PLACED_FEATURES = DeferredRegister.create(Registry.PLACED_FEATURE_REGISTRY, UndergroundVillages.MOD_ID);
