@@ -4,12 +4,10 @@ import com.mrbysco.undergroundvillages.UndergroundVillages;
 import com.mrbysco.undergroundvillages.feature.ConfiguredUndergroundStructureTags;
 import com.mrbysco.undergroundvillages.registry.ModConfiguredStructureFeatures;
 import com.mrbysco.undergroundvillages.util.UndergroundBiomeTags;
-import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BiomeTagsProvider;
-import net.minecraft.data.tags.TagsProvider;
+import net.minecraft.data.tags.StructureTagsProvider;
 import net.minecraft.world.level.biome.Biomes;
-import net.minecraft.world.level.levelgen.feature.ConfiguredStructureFeature;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -24,13 +22,13 @@ public class UndergroundDatagen {
 		DataGenerator generator = event.getGenerator();
 		ExistingFileHelper helper = event.getExistingFileHelper();
 
-		generator.addProvider(new UndergroundStructureFeatureTagProvider(generator, helper));
-		generator.addProvider(new UndergroundBiomeTagProvider(generator, helper));
+		generator.addProvider(event.includeServer(), new UndergroundStructureFeatureTagProvider(generator, helper));
+		generator.addProvider(event.includeServer(), new UndergroundBiomeTagProvider(generator, helper));
 	}
 
-	public static class UndergroundStructureFeatureTagProvider extends TagsProvider<ConfiguredStructureFeature<?, ?>> {
+	public static class UndergroundStructureFeatureTagProvider extends StructureTagsProvider {
 		public UndergroundStructureFeatureTagProvider(DataGenerator generator, @Nullable ExistingFileHelper existingFileHelper) {
-			super(generator, BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, UndergroundVillages.MOD_ID, existingFileHelper);
+			super(generator, UndergroundVillages.MOD_ID, existingFileHelper);
 		}
 
 		@Override
