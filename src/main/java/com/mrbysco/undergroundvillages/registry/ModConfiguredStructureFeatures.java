@@ -1,7 +1,6 @@
 package com.mrbysco.undergroundvillages.registry;
 
 import com.mrbysco.undergroundvillages.UndergroundVillages;
-import com.mrbysco.undergroundvillages.config.UndergroundConfig;
 import com.mrbysco.undergroundvillages.height.ConfigHeight;
 import com.mrbysco.undergroundvillages.util.UndergroundBiomeTags;
 import net.minecraft.core.HolderSet;
@@ -12,8 +11,6 @@ import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.GenerationStep.Decoration;
-import net.minecraft.world.level.levelgen.VerticalAnchor;
-import net.minecraft.world.level.levelgen.heightproviders.ConstantHeight;
 import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.StructureSpawnOverride;
 import net.minecraft.world.level.levelgen.structure.TerrainAdjustment;
