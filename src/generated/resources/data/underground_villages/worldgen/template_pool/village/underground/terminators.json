@@ -1,0 +1,41 @@
+{
+  "elements": [
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "underground_villages:village/underground/terminators/terminator_01",
+        "processors": "underground_villages:street_cave",
+        "projection": "rigid"
+      },
+      "weight": 1
+    },
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "underground_villages:village/underground/terminators/terminator_02",
+        "processors": "underground_villages:street_cave",
+        "projection": "rigid"
+      },
+      "weight": 1
+    },
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "underground_villages:village/underground/terminators/terminator_03",
+        "processors": "underground_villages:street_cave",
+        "projection": "rigid"
+      },
+      "weight": 1
+    },
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "underground_villages:village/underground/terminators/terminator_04",
+        "processors": "underground_villages:street_cave",
+        "projection": "rigid"
+      },
+      "weight": 1
+    }
+  ],
+  "fallback": "minecraft:empty"
+}

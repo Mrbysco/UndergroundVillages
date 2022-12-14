@@ -1,0 +1,326 @@
+{
+  "elements": [
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "underground_villages:village/underground/zombie/houses/small_house_1",
+        "processors": "minecraft:zombie_plains",
+        "projection": "rigid"
+      },
+      "weight": 2
+    },
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "underground_villages:village/underground/zombie/houses/small_house_2",
+        "processors": "minecraft:zombie_plains",
+        "projection": "rigid"
+      },
+      "weight": 2
+    },
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "underground_villages:village/underground/zombie/houses/small_house_3",
+        "processors": "minecraft:zombie_plains",
+        "projection": "rigid"
+      },
+      "weight": 2
+    },
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "underground_villages:village/underground/zombie/houses/small_house_4",
+        "processors": "minecraft:zombie_plains",
+        "projection": "rigid"
+      },
+      "weight": 2
+    },
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "underground_villages:village/underground/zombie/houses/small_house_5",
+        "processors": "minecraft:zombie_plains",
+        "projection": "rigid"
+      },
+      "weight": 2
+    },
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "underground_villages:village/underground/zombie/houses/small_house_6",
+        "processors": "minecraft:zombie_plains",
+        "projection": "rigid"
+      },
+      "weight": 1
+    },
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "underground_villages:village/underground/zombie/houses/small_house_7",
+        "processors": "minecraft:zombie_plains",
+        "projection": "rigid"
+      },
+      "weight": 2
+    },
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "underground_villages:village/underground/zombie/houses/small_house_8",
+        "processors": "minecraft:zombie_plains",
+        "projection": "rigid"
+      },
+      "weight": 2
+    },
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "underground_villages:village/underground/zombie/houses/medium_house_1",
+        "processors": "minecraft:zombie_plains",
+        "projection": "rigid"
+      },
+      "weight": 2
+    },
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "underground_villages:village/underground/zombie/houses/medium_house_2",
+        "processors": "minecraft:zombie_plains",
+        "projection": "rigid"
+      },
+      "weight": 2
+    },
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "underground_villages:village/underground/zombie/houses/big_house_1",
+        "processors": "minecraft:zombie_plains",
+        "projection": "rigid"
+      },
+      "weight": 2
+    },
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "underground_villages:village/underground/houses/butcher_shop_1",
+        "processors": "minecraft:zombie_plains",
+        "projection": "rigid"
+      },
+      "weight": 2
+    },
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "underground_villages:village/underground/zombie/houses/butcher_shop_2",
+        "processors": "minecraft:zombie_plains",
+        "projection": "rigid"
+      },
+      "weight": 2
+    },
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "underground_villages:village/underground/houses/tool_smith_1",
+        "processors": "minecraft:zombie_plains",
+        "projection": "rigid"
+      },
+      "weight": 2
+    },
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "underground_villages:village/underground/zombie/houses/fletcher_house_1",
+        "processors": "minecraft:zombie_plains",
+        "projection": "rigid"
+      },
+      "weight": 2
+    },
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "underground_villages:village/underground/zombie/houses/shepherds_house_1",
+        "processors": "minecraft:zombie_plains",
+        "projection": "rigid"
+      },
+      "weight": 2
+    },
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "underground_villages:village/underground/houses/armorer_house_1",
+        "processors": "minecraft:zombie_plains",
+        "projection": "rigid"
+      },
+      "weight": 2
+    },
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "underground_villages:village/underground/houses/fisher_cottage_1",
+        "processors": "minecraft:zombie_plains",
+        "projection": "rigid"
+      },
+      "weight": 2
+    },
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "underground_villages:village/underground/houses/tannery_1",
+        "processors": "minecraft:zombie_plains",
+        "projection": "rigid"
+      },
+      "weight": 2
+    },
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "underground_villages:village/underground/houses/cartographer_1",
+        "processors": "minecraft:zombie_plains",
+        "projection": "rigid"
+      },
+      "weight": 1
+    },
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "underground_villages:village/underground/houses/library_1",
+        "processors": "minecraft:zombie_plains",
+        "projection": "rigid"
+      },
+      "weight": 3
+    },
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "underground_villages:village/underground/houses/library_2",
+        "processors": "minecraft:zombie_plains",
+        "projection": "rigid"
+      },
+      "weight": 1
+    },
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "underground_villages:village/underground/houses/masons_house_1",
+        "processors": "minecraft:zombie_plains",
+        "projection": "rigid"
+      },
+      "weight": 2
+    },
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "underground_villages:village/underground/houses/weaponsmith_1",
+        "processors": "minecraft:zombie_plains",
+        "projection": "rigid"
+      },
+      "weight": 2
+    },
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "underground_villages:village/underground/houses/temple_3",
+        "processors": "minecraft:zombie_plains",
+        "projection": "rigid"
+      },
+      "weight": 2
+    },
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "underground_villages:village/underground/houses/temple_4",
+        "processors": "minecraft:zombie_plains",
+        "projection": "rigid"
+      },
+      "weight": 2
+    },
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "underground_villages:village/underground/zombie/houses/stable_1",
+        "processors": "minecraft:zombie_plains",
+        "projection": "rigid"
+      },
+      "weight": 2
+    },
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "underground_villages:village/underground/houses/stable_2",
+        "processors": "minecraft:zombie_plains",
+        "projection": "rigid"
+      },
+      "weight": 2
+    },
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "underground_villages:village/underground/houses/large_farm_1",
+        "processors": "minecraft:zombie_plains",
+        "projection": "rigid"
+      },
+      "weight": 4
+    },
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "underground_villages:village/underground/houses/small_farm_1",
+        "processors": "minecraft:zombie_plains",
+        "projection": "rigid"
+      },
+      "weight": 4
+    },
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "underground_villages:village/underground/houses/animal_pen_1",
+        "processors": "minecraft:zombie_plains",
+        "projection": "rigid"
+      },
+      "weight": 1
+    },
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "underground_villages:village/underground/houses/animal_pen_2",
+        "processors": "minecraft:zombie_plains",
+        "projection": "rigid"
+      },
+      "weight": 1
+    },
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "underground_villages:village/underground/zombie/houses/animal_pen_3",
+        "processors": "minecraft:zombie_plains",
+        "projection": "rigid"
+      },
+      "weight": 5
+    },
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "underground_villages:village/underground/zombie/houses/meeting_point_4",
+        "processors": "minecraft:zombie_plains",
+        "projection": "rigid"
+      },
+      "weight": 3
+    },
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "underground_villages:village/underground/zombie/houses/meeting_point_5",
+        "processors": "minecraft:zombie_plains",
+        "projection": "rigid"
+      },
+      "weight": 1
+    },
+    {
+      "element": {
+        "element_type": "minecraft:empty_pool_element"
+      },
+      "weight": 10
+    }
+  ],
+  "fallback": "underground_villages:village/underground/terminators"
+}
