@@ -41,7 +41,6 @@ import java.util.concurrent.CompletableFuture;
 public class UndergroundDatagen {
 	@SubscribeEvent
 	public static void gatherData(GatherDataEvent event) {
-
 		DataGenerator generator = event.getGenerator();
 		PackOutput packOutput = generator.getPackOutput();
 		ExistingFileHelper helper = event.getExistingFileHelper();
