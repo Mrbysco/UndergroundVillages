@@ -7,7 +7,8 @@ import com.mrbysco.undergroundvillages.util.UndergroundBiomeTags;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BiomeTagsProvider;
 import net.minecraft.data.tags.StructureTagsProvider;
-import net.minecraft.world.level.biome.Biomes;
+import net.minecraft.tags.BiomeTags;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -50,7 +51,7 @@ public class UndergroundDatagen {
 		@Override
 		protected void addTags() {
 			this.tag(UndergroundBiomeTags.HAS_VILLAGE_UNDERGROUND)
-					.add(Biomes.DESERT, Biomes.PLAINS, Biomes.MEADOW, Biomes.SAVANNA, Biomes.SNOWY_PLAINS, Biomes.TAIGA);
+					.addTags(Tags.Biomes.IS_DESERT, Tags.Biomes.IS_PLAINS, BiomeTags.IS_SAVANNA, BiomeTags.IS_TAIGA);
 		}
 	}
 }

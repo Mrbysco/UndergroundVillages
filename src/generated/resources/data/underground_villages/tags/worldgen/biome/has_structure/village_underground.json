@@ -1,10 +1,8 @@
 {
   "values": [
-    "minecraft:desert",
-    "minecraft:plains",
-    "minecraft:meadow",
-    "minecraft:savanna",
-    "minecraft:snowy_plains",
-    "minecraft:taiga"
+    "#forge:is_desert",
+    "#forge:is_plains",
+    "#minecraft:is_savanna",
+    "#minecraft:is_taiga"
   ]
 }
