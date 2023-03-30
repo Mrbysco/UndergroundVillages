@@ -1,1 +1,1 @@
-* Update the underground village structures (Courtesy of [ShyNieke](https://www.curseforge.com/members/shynieke/projects))
+* Initial update to 1.19.4

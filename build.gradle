@@ -93,12 +93,12 @@ minecraft {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
-    maven {
-        url = "https://dvs1.progwml6.com/files/maven"
-    }
-    maven {
-        url = "https://maven.blamejared.com"
-    }
+//    maven {
+//        url = "https://dvs1.progwml6.com/files/maven"
+//    }
+//    maven {
+//        url = "https://maven.blamejared.com"
+//    }
     maven {
         url "https://cursemaven.com"
         content {
@@ -110,10 +110,10 @@ repositories {
 dependencies {
     minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
 
-    compileOnly fg.deobf("mezz.jei:jei-${mc_version}-common-api:${jei_version}")
-    compileOnly fg.deobf("mezz.jei:jei-${mc_version}-forge-api:${jei_version}")
-
-    runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}-forge:${jei_version}")
+//    compileOnly fg.deobf("mezz.jei:jei-${mc_version}-common-api:${jei_version}")
+//    compileOnly fg.deobf("mezz.jei:jei-${mc_version}-forge-api:${jei_version}")
+//
+//    runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}-forge:${jei_version}")
 
 //    runtimeOnly fg.deobf("curse.maven:CommandStructures-565119:3823785")
 }
