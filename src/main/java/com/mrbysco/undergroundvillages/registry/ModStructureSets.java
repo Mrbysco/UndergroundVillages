@@ -18,7 +18,10 @@ public class ModStructureSets {
 
 	public static void bootstrap(BootstapContext<StructureSet> context) {
 		HolderGetter<Structure> structureHolderGetter = context.lookup(Registries.STRUCTURE);
-		context.register(UNDERGROUND_VILLAGES, new StructureSet(List.of(StructureSet.entry(structureHolderGetter.getOrThrow(ModStructures.UNDERGROUND_VILLAGE))),
+		context.register(UNDERGROUND_VILLAGES, new StructureSet(
+				List.of(
+						StructureSet.entry(structureHolderGetter.getOrThrow(ModStructures.UNDERGROUND_VILLAGE))
+				),
 				new RandomSpreadStructurePlacement(32, 7, RandomSpreadType.LINEAR, 11841195)));
 	}
 }

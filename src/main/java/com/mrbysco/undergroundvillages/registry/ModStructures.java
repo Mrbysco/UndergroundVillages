@@ -9,11 +9,9 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.structure.Structure;
-import net.minecraft.world.level.levelgen.structure.StructureSpawnOverride;
 import net.minecraft.world.level.levelgen.structure.TerrainAdjustment;
 import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
 import net.minecraft.world.level.levelgen.structure.structures.JigsawStructure;
@@ -34,15 +32,8 @@ public class ModStructures {
 						templateHolderGetter.getOrThrow(ModTemplatePools.UNDERGROUND_START), 6, new ConfigHeight(), true));
 	}
 
-
-	private static Structure.StructureSettings structure(HolderSet<Biome> biomeHolderSet,
-														 Map<MobCategory, StructureSpawnOverride> spawnOverrideMap,
-														 GenerationStep.Decoration decoration, TerrainAdjustment terrainAdjustment) {
-		return new Structure.StructureSettings(biomeHolderSet, spawnOverrideMap, decoration, terrainAdjustment);
-	}
-
 	private static Structure.StructureSettings structure(HolderSet<Biome> biomeHolderSet, TerrainAdjustment terrainAdjustment) {
-		return structure(biomeHolderSet, Map.of(), GenerationStep.Decoration.UNDERGROUND_DECORATION, terrainAdjustment);
+		return new Structure.StructureSettings(biomeHolderSet, Map.of(), GenerationStep.Decoration.UNDERGROUND_DECORATION, terrainAdjustment);
 	}
 
 }

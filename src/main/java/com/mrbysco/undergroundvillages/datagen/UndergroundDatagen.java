@@ -1,8 +1,5 @@
 package com.mrbysco.undergroundvillages.datagen;
 
-import com.google.common.collect.Maps;
-import com.google.gson.JsonElement;
-import com.mojang.serialization.JsonOps;
 import com.mrbysco.undergroundvillages.UndergroundVillages;
 import com.mrbysco.undergroundvillages.feature.ConfiguredUndergroundStructureTags;
 import com.mrbysco.undergroundvillages.registry.ModPlacedFeatures;
@@ -21,20 +18,15 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.registries.VanillaRegistries;
 import net.minecraft.data.tags.BiomeTagsProvider;
 import net.minecraft.data.tags.StructureTagsProvider;
-import net.minecraft.resources.RegistryOps;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biomes;
-import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraftforge.common.data.DatapackBuiltinEntriesProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.common.data.JsonCodecProvider;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 import javax.annotation.Nullable;
-import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -44,15 +36,10 @@ public class UndergroundDatagen {
 		DataGenerator generator = event.getGenerator();
 		PackOutput packOutput = generator.getPackOutput();
 		ExistingFileHelper helper = event.getExistingFileHelper();
-		CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
+		CompletableFuture<HolderLookup.Provider> lookupProvider = CompletableFuture.supplyAsync(UndergroundDatagen::getProvider);
 
 		generator.addProvider(event.includeServer(), new DatapackBuiltinEntriesProvider(
-				packOutput, UndergroundDatagen::getProvider));
-
-		HolderLookup.Provider provider = getProvider();
-		final RegistryOps<JsonElement> ops = RegistryOps.create(JsonOps.INSTANCE, provider);
-		generator.addProvider(event.includeServer(), JsonCodecProvider.forDatapackRegistry(
-				packOutput, helper, UndergroundVillages.MOD_ID, ops, Registries.STRUCTURE, getStructures(provider)));
+				packOutput, lookupProvider, Set.of(UndergroundVillages.MOD_ID)));
 
 		generator.addProvider(event.includeServer(), new UndergroundStructureFeatureTagProvider(packOutput, lookupProvider, helper));
 		generator.addProvider(event.includeServer(), new UndergroundBiomeTagProvider(packOutput, lookupProvider, helper));
@@ -64,28 +51,15 @@ public class UndergroundDatagen {
 		registryBuilder.add(Registries.CONFIGURED_FEATURE, context -> {
 		});
 		registryBuilder.add(Registries.PLACED_FEATURE, ModPlacedFeatures::bootstrap);
-		registryBuilder.add(Registries.STRUCTURE, ModStructures::bootstrap);
 		registryBuilder.add(Registries.PROCESSOR_LIST, ModProcessorLists::bootstrap);
-		registryBuilder.add(Registries.TEMPLATE_POOL, ModTemplatePools::bootstrap);
+		registryBuilder.add(Registries.STRUCTURE, ModStructures::bootstrap);
 		registryBuilder.add(Registries.STRUCTURE_SET, ModStructureSets::bootstrap);
+		registryBuilder.add(Registries.TEMPLATE_POOL, ModTemplatePools::bootstrap);
 		// We need the BIOME registry to be present so we can use a biome tag, doesn't matter that it's empty
 		registryBuilder.add(Registries.BIOME, context -> {
 		});
 		RegistryAccess.Frozen regAccess = RegistryAccess.fromRegistryOfRegistries(BuiltInRegistries.REGISTRY);
 		return registryBuilder.buildPatch(regAccess, VanillaRegistries.createLookup());
-	}
-
-	public static Map<ResourceLocation, Structure> getStructures(HolderLookup.Provider provider) {
-		Map<ResourceLocation, Structure> map = Maps.newHashMap();
-
-		fillStructures(map, provider, ModStructures.UNDERGROUND_VILLAGE);
-
-		return map;
-	}
-
-	public static void fillStructures(Map<ResourceLocation, Structure> map, HolderLookup.Provider provider, ResourceKey<Structure> featureKey) {
-		final HolderLookup.RegistryLookup<Structure> structureReg = provider.lookupOrThrow(Registries.STRUCTURE);
-		map.put(featureKey.location(), structureReg.getOrThrow(featureKey).value());
 	}
 
 	public static class UndergroundStructureFeatureTagProvider extends StructureTagsProvider {

@@ -7,9 +7,9 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.biome.Biome;
 
 public class UndergroundBiomeTags {
-	public static final TagKey<Biome> HAS_VILLAGE_UNDERGROUND = create(UndergroundVillages.MOD_ID + ":has_structure/village_underground");
+	public static final TagKey<Biome> HAS_VILLAGE_UNDERGROUND = create("has_structure/village_underground");
 
 	private static TagKey<Biome> create(String id) {
-		return TagKey.create(Registries.BIOME, new ResourceLocation(id));
+		return TagKey.create(Registries.BIOME, new ResourceLocation(UndergroundVillages.MOD_ID, id));
 	}
 }
