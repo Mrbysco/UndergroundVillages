@@ -5,7 +5,6 @@ import com.mrbysco.undergroundvillages.feature.placement.UndergroundVillagePlace
 import com.mrbysco.undergroundvillages.registry.ModConfiguredStructureFeatures;
 import com.mrbysco.undergroundvillages.registry.ModStructureFeatures;
 import com.mrbysco.undergroundvillages.registry.ModStructureProcessorList;
-import com.mrbysco.undergroundvillages.registry.ModStructureSets;
 import com.mrbysco.undergroundvillages.registry.ModTemplatePools;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -26,6 +25,5 @@ public class UndergroundVillages {
 		UndergroundVillagePlacements.PLACED_FEATURES.register(eventBus);
 		ModTemplatePools.TEMPLATE_POOLS.register(eventBus);
 		ModConfiguredStructureFeatures.CONFIGURED_STRUCTURES.register(eventBus);
-		ModStructureSets.STRUCTURE_SETS.register(eventBus);
 	}
 }

@@ -1,1 +1,1 @@
-* Update the underground village structures (Courtesy of [ShyNieke](https://www.curseforge.com/members/shynieke/projects))
+* Add the structure set json instead of registering it in code
