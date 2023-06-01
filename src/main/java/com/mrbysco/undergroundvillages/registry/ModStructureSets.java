@@ -15,5 +15,5 @@ public class ModStructureSets {
 
 	public static final RegistryObject<StructureSet> UNDERGROUND_VILLAGES = STRUCTURE_SETS.register("underground_villages", () ->
 			new StructureSet(List.of(StructureSet.entry(ModConfiguredStructureFeatures.UNDERGROUND_VILLAGE.getHolder().get())),
-					new RandomSpreadStructurePlacement(32, 7, RandomSpreadType.LINEAR, 11841195)));
+					new RandomSpreadStructurePlacement(35, 9, RandomSpreadType.LINEAR, 11841195)));
 }
