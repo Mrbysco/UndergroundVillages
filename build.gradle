@@ -1,87 +1,91 @@
 plugins {
+    id 'eclipse'
+    id 'idea'
     id 'maven-publish'
-    id 'net.minecraftforge.gradle' version '5.+'
+    id 'net.minecraftforge.gradle' version '[6.0,6.2)'
     id 'com.matthewprenger.cursegradle' version '1.4.0'
     id 'com.modrinth.minotaur' version "2.+"
 }
 
 version = "${version}"
-group = 'com.mrbysco.undergroundvillages' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "UndergroundVillages-${mc_version}"
+group = "${mod_group}"
+base {
+    archivesName = "${mod_archive_name}-${mc_version}"
+}
 
 // Mojang ships Java 17 to end users in 1.18+, so your mod should target Java 17.
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
-println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
+println "Java: ${System.getProperty 'java.version'}, JVM: ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'}), Arch: ${System.getProperty 'os.arch'}"
 minecraft {
-    mappings channel: "${mcp_channel}", version: "${mcp_mappings}"
-    // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
-    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+    mappings channel: mapping_channel, version: mapping_version
 
-    // Default run configurations.
-    // These can be tweaked, removed, or duplicated as needed.
+    copyIdeResources = true
+
+    // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+
     runs {
         client {
-            workingDirectory project.file('run')
+			workingDirectory project.file('run')
             property 'mixin.env.remapRefMap', 'true'
             property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
-
+			
             // Recommended logging data for a userdev environment
             // property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            property 'forge.logging.markers', 'REGISTRIES'
 
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'debug'
 
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
-            property 'forge.enabledGameTestNamespaces', 'underground_villages'
+            property 'forge.enabledGameTestNamespaces', "${mod_id}"
 
             mods {
-                UndergroundVillages {
+                "${mod_id}" {
                     source sourceSets.main
                 }
             }
         }
 
         server {
-            workingDirectory project.file('run')
+			workingDirectory project.file('run')
             property 'mixin.env.remapRefMap', 'true'
             property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
 
             // Recommended logging data for a userdev environment
             // property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            property 'forge.logging.markers', 'REGISTRIES'
 
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'debug'
 
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
-            property 'forge.enabledGameTestNamespaces', 'underground_villages'
+            property 'forge.enabledGameTestNamespaces', "${mod_id}"
 
             mods {
-                UndergroundVillages {
+                "${mod_id}" {
                     source sourceSets.main
                 }
             }
         }
 
         data {
-            workingDirectory project.file('run')
+			workingDirectory project.file('run')
             property 'mixin.env.remapRefMap', 'true'
             property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
 
             // Recommended logging data for a userdev environment
             // property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            property 'forge.logging.markers', 'REGISTRIES'
 
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'debug'
 
             // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
-            args '--mod', 'underground_villages', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
-
-            // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
-            property 'forge.enabledGameTestNamespaces', 'underground_villages'
+            args '--mod', "${mod_id}", '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
 
             mods {
-                UndergroundVillages {
+                "${mod_id}" {
                     source sourceSets.main
                 }
             }
@@ -93,33 +97,25 @@ minecraft {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
-    maven {
+	maven {
         url = "https://maven.blamejared.com"
-    }
-    maven {
-        url "https://cursemaven.com"
-        content {
-            includeGroup "curse.maven"
-        }
-    }
+	}
 }
 
 dependencies {
     minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
-
-    compileOnly fg.deobf("mezz.jei:jei-${mc_version}-common-api:${jei_version}")
+	
+	compileOnly fg.deobf("mezz.jei:jei-${mc_version}-common-api:${jei_version}")
     compileOnly fg.deobf("mezz.jei:jei-${mc_version}-forge-api:${jei_version}")
 
     runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}-forge:${jei_version}")
-
-//    runtimeOnly fg.deobf("curse.maven:CommandStructures-565119:3823785")
 }
 
 // Example for how to get properties into the manifest for reading at runtime.
 jar {
     manifest {
         attributes([
-                "Specification-Title"     : "UndergroundVillages",
+                "Specification-Title"     : "${mod_id}",
                 "Specification-Vendor"    : "Mrbysco",
                 "Specification-Version"   : "1", // We are version 1 of ourselves
                 "Implementation-Title"    : project.name,
@@ -129,6 +125,12 @@ jar {
         ])
     }
 }
+
+// Example configuration to allow publishing using the maven-publish plugin
+// This is the preferred method to reobfuscate your jar file
+jar.finalizedBy('reobfJar')
+// However if you are in a multi-project build, dev time needs unobfed jar files, so you can delay the obfuscation until publishing by doing
+// publish.dependsOn('reobfJar')
 
 def reobfFile = file("$buildDir/reobfJar/output.jar")
 def reobfArtifact = artifacts.add('default', reobfFile) {
@@ -140,7 +142,7 @@ publishing {
         mavenJava(MavenPublication) {
             artifact(reobfArtifact) {
                 builtBy reobfArtifact
-                artifactId = archivesBaseName
+                artifactId = base.archivesName.get()
                 classifier null
             }
         }
@@ -148,7 +150,7 @@ publishing {
     repositories {
         if (System.getenv().SAP_SECRET) {
             maven {
-                url "https://maven.saps.dev/minecraft"
+                url "https://maven.saps.dev/releases"
                 credentials {
                     username = "mrbysco"
                     password = "${System.getenv().SAP_SECRET}"
@@ -160,19 +162,6 @@ publishing {
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
-}
-
-
-////////////////
-// IntelliJ Project Import
-// The Mixin annotation process does not have an obfuscation source when running through the IntelliJ compiler,
-// thus we have to prevent it from being activated as part of importing this Gradle project into IntelliJ.
-if (System.getProperty("idea.sync.active") == "true") {
-    afterEvaluate {
-        tasks.withType(JavaCompile).all {
-            it.options.annotationProcessorPath = files()
-        }
-    }
 }
 
 apply from: 'gradle/curseforge.gradle'
