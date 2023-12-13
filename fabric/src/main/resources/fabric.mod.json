@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "underground_villages",
+  "version": "${version}",
+  "name": "Underground Villages Mod",
+  "description": "Ever wanted to be a tunnel dweller? Wanted villages to also be underground? Well then this mod is for you!\nThis mod adds Underground Villages to your world.",
+  "authors": [
+    "Mrbysco", "ShyNieke"
+  ],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/underground-villages",
+    "sources": "https://github.com/Mrbysco/UndergroundVillages",
+    "issues": "https://github.com/Mrbysco/UndergroundVillages/issues"
+  },
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.mrbysco.undergroundvillages.UndergroundVillagesFabric"
+    ],
+    "modmenu": [
+      "com.mrbysco.undergroundvillages.config.UndergroundModIntegration"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.14",
+    "fabric": "*",
+    "minecraft": "~1.20",
+    "java": ">=17",
+    "cloth-config": ">=11"
+  }
+}
+
