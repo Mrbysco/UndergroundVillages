@@ -1,1 +1,1 @@
-* Initial build with multiloader setup
+* Initial update to 1.20.4
