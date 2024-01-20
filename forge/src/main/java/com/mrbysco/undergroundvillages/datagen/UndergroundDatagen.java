@@ -8,6 +8,7 @@ import com.mrbysco.undergroundvillages.registration.ModStructureSets;
 import com.mrbysco.undergroundvillages.registration.ModStructures;
 import com.mrbysco.undergroundvillages.registration.ModTemplatePools;
 import com.mrbysco.undergroundvillages.util.UndergroundBiomeTags;
+import net.minecraft.core.Cloner;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.RegistrySetBuilder;
@@ -19,11 +20,11 @@ import net.minecraft.data.registries.VanillaRegistries;
 import net.minecraft.data.tags.BiomeTagsProvider;
 import net.minecraft.data.tags.StructureTagsProvider;
 import net.minecraft.world.level.biome.Biomes;
-import net.minecraftforge.common.data.DatapackBuiltinEntriesProvider;
-import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.data.event.GatherDataEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.data.event.GatherDataEvent;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.Mod;
 
 import javax.annotation.Nullable;
 import java.util.Set;
@@ -36,17 +37,17 @@ public class UndergroundDatagen {
 		DataGenerator generator = event.getGenerator();
 		PackOutput packOutput = generator.getPackOutput();
 		ExistingFileHelper helper = event.getExistingFileHelper();
-		CompletableFuture<HolderLookup.Provider> lookupProvider = CompletableFuture.supplyAsync(UndergroundDatagen::getProvider);
+		CompletableFuture<HolderLookup.Provider> lookupProvider = CompletableFuture.supplyAsync(() -> UndergroundDatagen.getProvider().full());
 
 		generator.addProvider(event.includeServer(), new DatapackBuiltinEntriesProvider(
-				packOutput, lookupProvider, Set.of(Constants.MOD_ID)));
+				packOutput, CompletableFuture.supplyAsync(UndergroundDatagen::getProvider), Set.of(Constants.MOD_ID)));
 
 		generator.addProvider(event.includeServer(), new UndergroundStructureFeatureTagProvider(packOutput, lookupProvider, helper));
 		generator.addProvider(event.includeServer(), new UndergroundBiomeTagProvider(packOutput, lookupProvider, helper));
 	}
 
 
-	private static HolderLookup.Provider getProvider() {
+	private static RegistrySetBuilder.PatchedRegistries getProvider() {
 		final RegistrySetBuilder registryBuilder = new RegistrySetBuilder();
 		registryBuilder.add(Registries.CONFIGURED_FEATURE, context -> {
 		});
@@ -59,7 +60,9 @@ public class UndergroundDatagen {
 		registryBuilder.add(Registries.BIOME, context -> {
 		});
 		RegistryAccess.Frozen regAccess = RegistryAccess.fromRegistryOfRegistries(BuiltInRegistries.REGISTRY);
-		return registryBuilder.buildPatch(regAccess, VanillaRegistries.createLookup());
+		Cloner.Factory cloner$factory = new Cloner.Factory();
+		net.neoforged.neoforge.registries.DataPackRegistriesHooks.getDataPackRegistriesWithDimensions().forEach(data -> data.runWithArguments(cloner$factory::addCodec));
+		return registryBuilder.buildPatch(regAccess, VanillaRegistries.createLookup(), cloner$factory);
 	}
 
 	public static class UndergroundStructureFeatureTagProvider extends StructureTagsProvider {
