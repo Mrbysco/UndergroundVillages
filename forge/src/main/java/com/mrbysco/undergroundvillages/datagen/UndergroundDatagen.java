@@ -44,6 +44,8 @@ public class UndergroundDatagen {
 
 		generator.addProvider(event.includeServer(), new UndergroundStructureFeatureTagProvider(packOutput, lookupProvider, helper));
 		generator.addProvider(event.includeServer(), new UndergroundBiomeTagProvider(packOutput, lookupProvider, helper));
+
+		generator.addProvider(event.includeServer(), new StructureUpdater("structures/village", Constants.MOD_ID, helper, packOutput));
 	}
 
 
