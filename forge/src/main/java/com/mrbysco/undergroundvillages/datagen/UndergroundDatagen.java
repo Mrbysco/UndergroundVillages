@@ -19,33 +19,31 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.registries.VanillaRegistries;
 import net.minecraft.data.tags.BiomeTagsProvider;
 import net.minecraft.data.tags.StructureTagsProvider;
+import net.minecraft.server.packs.PackType;
 import net.minecraft.world.level.biome.Biomes;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 
-import javax.annotation.Nullable;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
 @EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD)
 public class UndergroundDatagen {
 	@SubscribeEvent
-	public static void gatherData(GatherDataEvent event) {
+	public static void gatherData(GatherDataEvent.Client event) {
 		DataGenerator generator = event.getGenerator();
 		PackOutput packOutput = generator.getPackOutput();
-		ExistingFileHelper helper = event.getExistingFileHelper();
 		CompletableFuture<HolderLookup.Provider> lookupProvider = CompletableFuture.supplyAsync(() -> UndergroundDatagen.getProvider().full());
 
-		generator.addProvider(event.includeServer(), new DatapackBuiltinEntriesProvider(
+		generator.addProvider(true, new DatapackBuiltinEntriesProvider(
 				packOutput, CompletableFuture.supplyAsync(UndergroundDatagen::getProvider), Set.of(Constants.MOD_ID)));
 
-		generator.addProvider(event.includeServer(), new UndergroundStructureFeatureTagProvider(packOutput, lookupProvider, helper));
-		generator.addProvider(event.includeServer(), new UndergroundBiomeTagProvider(packOutput, lookupProvider, helper));
+		generator.addProvider(true, new UndergroundStructureFeatureTagProvider(packOutput, lookupProvider));
+		generator.addProvider(true, new UndergroundBiomeTagProvider(packOutput, lookupProvider));
 
-		generator.addProvider(event.includeServer(), new StructureUpdater("structure/village", Constants.MOD_ID, helper, packOutput));
+		generator.addProvider(true, new StructureUpdater("structure/village", packOutput, event.getResourceManager(PackType.SERVER_DATA)));
 	}
 
 
@@ -68,8 +66,8 @@ public class UndergroundDatagen {
 	}
 
 	public static class UndergroundStructureFeatureTagProvider extends StructureTagsProvider {
-		public UndergroundStructureFeatureTagProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> lookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
-			super(packOutput, lookupProvider, Constants.MOD_ID, existingFileHelper);
+		public UndergroundStructureFeatureTagProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> lookupProvider) {
+			super(packOutput, lookupProvider, Constants.MOD_ID);
 		}
 
 		@Override
@@ -84,8 +82,8 @@ public class UndergroundDatagen {
 	}
 
 	public static class UndergroundBiomeTagProvider extends BiomeTagsProvider {
-		public UndergroundBiomeTagProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> lookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
-			super(packOutput, lookupProvider, Constants.MOD_ID, existingFileHelper);
+		public UndergroundBiomeTagProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> lookupProvider) {
+			super(packOutput, lookupProvider, Constants.MOD_ID);
 		}
 
 		@Override
