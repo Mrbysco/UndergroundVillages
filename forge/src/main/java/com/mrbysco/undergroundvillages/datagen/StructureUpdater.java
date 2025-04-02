@@ -79,7 +79,7 @@ public class StructureUpdater implements DataProvider {
 
 	private static CompoundTag updateNBT(CompoundTag nbt) {
 		final CompoundTag updatedNBT = DataFixTypes.STRUCTURE.updateToCurrentVersion(
-				DataFixers.getDataFixer(), nbt, nbt.getInt("DataVersion")
+				DataFixers.getDataFixer(), nbt, nbt.getIntOr("DataVersion", 0)
 		);
 		StructureTemplate template = new StructureTemplate();
 		template.load(BuiltInRegistries.BLOCK, updatedNBT);
