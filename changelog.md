@@ -1,1 +1,1 @@
-* Update the structure file format
+* Fix an issue where `crossroad_05.nbt` is corrupt
