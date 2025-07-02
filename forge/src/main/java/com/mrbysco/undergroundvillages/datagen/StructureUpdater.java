@@ -25,6 +25,7 @@ import net.minecraft.util.datafix.DataFixTypes;
 import net.minecraft.util.datafix.DataFixers;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import java.io.ByteArrayOutputStream;
@@ -54,6 +55,7 @@ public class StructureUpdater implements DataProvider {
 		}
 	}
 
+	@NotNull
 	@Override
 	public CompletableFuture<?> run(@Nonnull CachedOutput cache) {
 		try {
@@ -77,6 +79,7 @@ public class StructureUpdater implements DataProvider {
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	private void writeNBTTo(ResourceLocation loc, CompoundTag data, CachedOutput cache) throws IOException {
 		ByteArrayOutputStream bytearrayoutputstream = new ByteArrayOutputStream();
 		NbtIo.writeCompressed(data, bytearrayoutputstream);
