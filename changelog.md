@@ -1,1 +1,1 @@
-* Initial update to 1.21.5
+* Fix some corrupt structure nbt files
