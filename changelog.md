@@ -1,1 +1,1 @@
-* Fix an issue where `crossroad_05.nbt` is corrupt
+* Fix `pigs_1.nbt` being corrupted
