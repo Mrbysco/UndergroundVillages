@@ -1,1 +1,1 @@
-* Fix some corrupt structure nbt files
+* Initial update to 1.21.6
