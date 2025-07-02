@@ -29,7 +29,7 @@ import net.neoforged.neoforge.data.event.GatherDataEvent;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
-@EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber
 public class UndergroundDatagen {
 	@SubscribeEvent
 	public static void gatherData(GatherDataEvent.Client event) {
