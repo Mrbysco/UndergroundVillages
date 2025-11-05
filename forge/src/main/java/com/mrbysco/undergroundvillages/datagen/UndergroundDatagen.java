@@ -8,23 +8,20 @@ import com.mrbysco.undergroundvillages.registration.ModStructureSets;
 import com.mrbysco.undergroundvillages.registration.ModStructures;
 import com.mrbysco.undergroundvillages.registration.ModTemplatePools;
 import com.mrbysco.undergroundvillages.util.UndergroundBiomeTags;
-import net.minecraft.core.Cloner;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.RegistrySetBuilder;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.registries.VanillaRegistries;
 import net.minecraft.data.tags.BiomeTagsProvider;
 import net.minecraft.data.tags.StructureTagsProvider;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.world.level.biome.Biomes;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
+import net.neoforged.neoforge.common.data.LanguageProvider;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
@@ -35,34 +32,44 @@ public class UndergroundDatagen {
 	public static void gatherData(GatherDataEvent.Client event) {
 		DataGenerator generator = event.getGenerator();
 		PackOutput packOutput = generator.getPackOutput();
-		CompletableFuture<HolderLookup.Provider> lookupProvider = CompletableFuture.supplyAsync(() -> UndergroundDatagen.getProvider().full());
 
-		generator.addProvider(true, new DatapackBuiltinEntriesProvider(
-				packOutput, CompletableFuture.supplyAsync(UndergroundDatagen::getProvider), Set.of(Constants.MOD_ID)));
+		event.createDatapackRegistryObjects(BUILDER, Set.of(Constants.MOD_ID));
+		CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
 		generator.addProvider(true, new UndergroundStructureFeatureTagProvider(packOutput, lookupProvider));
 		generator.addProvider(true, new UndergroundBiomeTagProvider(packOutput, lookupProvider));
+		generator.addProvider(true, new UndergroundLanguageProvider(packOutput));
 
 		generator.addProvider(true, new StructureUpdater("structure/village", packOutput, event.getResourceManager(PackType.SERVER_DATA)));
 	}
 
+	public static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
+			.add(Registries.PLACED_FEATURE, ModPlacedFeatures::bootstrap)
+			.add(Registries.PROCESSOR_LIST, ModProcessorLists::bootstrap)
+			.add(Registries.STRUCTURE, ModStructures::bootstrap)
+			.add(Registries.STRUCTURE_SET, ModStructureSets::bootstrap)
+			.add(Registries.TEMPLATE_POOL, ModTemplatePools::bootstrap);
 
-	private static RegistrySetBuilder.PatchedRegistries getProvider() {
-		final RegistrySetBuilder registryBuilder = new RegistrySetBuilder();
-		registryBuilder.add(Registries.CONFIGURED_FEATURE, context -> {
-		});
-		registryBuilder.add(Registries.PLACED_FEATURE, ModPlacedFeatures::bootstrap);
-		registryBuilder.add(Registries.PROCESSOR_LIST, ModProcessorLists::bootstrap);
-		registryBuilder.add(Registries.STRUCTURE, ModStructures::bootstrap);
-		registryBuilder.add(Registries.STRUCTURE_SET, ModStructureSets::bootstrap);
-		registryBuilder.add(Registries.TEMPLATE_POOL, ModTemplatePools::bootstrap);
-		// We need the BIOME registry to be present, so we can use a biome tag, doesn't matter that it's empty
-		registryBuilder.add(Registries.BIOME, context -> {
-		});
-		RegistryAccess.Frozen regAccess = RegistryAccess.fromRegistryOfRegistries(BuiltInRegistries.REGISTRY);
-		Cloner.Factory cloner$factory = new Cloner.Factory();
-		net.neoforged.neoforge.registries.DataPackRegistriesHooks.getDataPackRegistriesWithDimensions().forEach(data -> data.runWithArguments(cloner$factory::addCodec));
-		return registryBuilder.buildPatch(regAccess, VanillaRegistries.createLookup(), cloner$factory);
+	private static class UndergroundLanguageProvider extends LanguageProvider {
+		public UndergroundLanguageProvider(PackOutput packOutput) {
+			super(packOutput, Constants.MOD_ID, "en_us");
+		}
+
+		@Override
+		protected void addTranslations() {
+			this.addConfig("Generation", "Generation", "Generation Settings");
+			this.addConfig("yLevel", "Y Level", "The Y level it'll try to generate villages at");
+
+			this.add("text.autoconfig.underground_villages.title", "Underground Villages");
+			this.add("text.autoconfig.underground_villages.option.generation", "Generation");
+			this.add("text.autoconfig.underground_villages.option.generation.yLevel", "Y Level");
+		}
+
+		private void addConfig(String path, String name, @Nullable String description) {
+			this.add(Constants.MOD_ID + ".configuration." + path, name);
+			if (description != null && !description.isEmpty())
+				this.add(Constants.MOD_ID + ".configuration." + path + ".tooltip", description);
+		}
 	}
 
 	public static class UndergroundStructureFeatureTagProvider extends StructureTagsProvider {
@@ -76,6 +83,7 @@ public class UndergroundDatagen {
 					.add(ModStructures.UNDERGROUND_VILLAGE);
 		}
 
+		@Override
 		public String getName() {
 			return "Configured Underground Structure Feature Tags";
 		}

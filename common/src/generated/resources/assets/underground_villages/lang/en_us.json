@@ -1,0 +1,9 @@
+{
+  "text.autoconfig.underground_villages.option.generation": "Generation",
+  "text.autoconfig.underground_villages.option.generation.yLevel": "Y Level",
+  "text.autoconfig.underground_villages.title": "Underground Villages",
+  "underground_villages.configuration.Generation": "Generation",
+  "underground_villages.configuration.Generation.tooltip": "Generation Settings",
+  "underground_villages.configuration.yLevel": "Y Level",
+  "underground_villages.configuration.yLevel.tooltip": "The Y level it'll try to generate villages at"
+}
