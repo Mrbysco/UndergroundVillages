@@ -9,8 +9,8 @@ import net.minecraft.data.worldgen.features.PileFeatures;
 import net.minecraft.data.worldgen.features.TreeFeatures;
 import net.minecraft.data.worldgen.features.VegetationFeatures;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
@@ -20,7 +20,7 @@ public class ModPlacedFeatures {
 	public static final ResourceKey<PlacedFeature> FLOWER_PLAIN_VILLAGE = createKey("flower_plain");
 
 	public static ResourceKey<PlacedFeature> createKey(String path) {
-		return ResourceKey.create(Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, path));
+		return ResourceKey.create(Registries.PLACED_FEATURE, Identifier.fromNamespaceAndPath(Constants.MOD_ID, path));
 	}
 
 	public static void bootstrap(BootstrapContext<PlacedFeature> context) {

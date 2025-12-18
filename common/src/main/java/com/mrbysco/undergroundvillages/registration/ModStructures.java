@@ -7,8 +7,8 @@ import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.structure.Structure;
@@ -21,7 +21,7 @@ import java.util.Map;
 public class ModStructures {
 
 	public static final ResourceKey<Structure> UNDERGROUND_VILLAGE =
-			ResourceKey.create(Registries.STRUCTURE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "underground_village"));
+			ResourceKey.create(Registries.STRUCTURE, Identifier.fromNamespaceAndPath(Constants.MOD_ID, "underground_village"));
 
 	public static void bootstrap(BootstrapContext<Structure> context) {
 		HolderGetter<Biome> biomeHolderGetter = context.lookup(Registries.BIOME);
