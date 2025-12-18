@@ -59,7 +59,15 @@ loom {
     }
 }
 
-sourceSets.main.resources.srcDirs += project(":common").file('src/generated/resources/').absolutePath
+sourceSets {
+    main {
+        resources {
+            srcDirs += [
+                    'src/main/generated'
+            ]
+        }
+    }
+}
 
 tasks.withType(JavaCompile).configureEach {
     source(project(":common").sourceSets.main.allSource)
@@ -107,6 +115,7 @@ if (System.getenv().CURSEFORGE_KEY) {
         mainFile.addGameVersion "Fabric"
         mainFile.addGameVersion "${minecraft_version}"
         mainFile.addGameVersion "Java 21"
+        mainFile.addGameVersion('Server', 'Client')
 
         mainFile.changelog = file("$project.rootDir/changelog.md")
         mainFile.changelogType = 'markdown'
