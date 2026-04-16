@@ -4,7 +4,7 @@ import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.common.ModConfigSpec.IntValue;
 import org.apache.commons.lang3.tuple.Pair;
 
-public class UndergroundConfigForge {
+public class UndergroundConfig {
 	public static class Common {
 		public final IntValue yLevel;
 

@@ -16,6 +16,6 @@ This mod adds Underground Villages to your world.
 [[dependencies.underground_villages]]
 modId="minecraft"
 type="REQUIRED"
-versionRange="[1.21.11,1.22)"
+versionRange="[26.1.1,)"
 ordering="NONE"
 side="BOTH"

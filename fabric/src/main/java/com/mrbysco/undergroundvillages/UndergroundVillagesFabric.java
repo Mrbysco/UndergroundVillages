@@ -1,17 +1,15 @@
 package com.mrbysco.undergroundvillages;
 
-import com.mrbysco.undergroundvillages.config.UndergroundConfigFabric;
-import me.shedaniel.autoconfig.AutoConfig;
-import me.shedaniel.autoconfig.ConfigHolder;
-import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
+import com.mrbysco.undergroundvillages.config.UndergroundConfig;
+import fuzs.forgeconfigapiport.fabric.api.v5.ConfigRegistry;
 import net.fabricmc.api.ModInitializer;
+import net.neoforged.fml.config.ModConfig;
 
 public class UndergroundVillagesFabric implements ModInitializer {
-	public static ConfigHolder<UndergroundConfigFabric> config;
 
 	@Override
 	public void onInitialize() {
-		config = AutoConfig.register(UndergroundConfigFabric.class, Toml4jConfigSerializer::new);
+		ConfigRegistry.INSTANCE.register(Constants.MOD_ID, ModConfig.Type.COMMON, UndergroundConfig.commonSpec);
 
 		CommonClass.init();
 	}
