@@ -33,7 +33,7 @@ public class UndergroundDatagen {
 		DataGenerator generator = event.getGenerator();
 		PackOutput packOutput = generator.getPackOutput();
 
-		event.createDatapackRegistryObjects(BUILDER, Set.of(Constants.MOD_ID));
+		event.createDatapackRegistryObjects(BUILDER);
 		CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
 		generator.addProvider(true, new UndergroundStructureFeatureTagProvider(packOutput, lookupProvider));
